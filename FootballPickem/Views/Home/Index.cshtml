@@ -1,8 +1,4 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -53,12 +49,27 @@
                     background-color: #45a049;
                 }
     </style>
+
+    <script>
+        function validateAndRedirect() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            if (username === "" || password === "") {
+                alert("Both username and password must be filled out.");
+                return false; // Prevents form submission
+            } else {
+                // Redirect to a new page if both fields are filled
+                window.location.href = "week-selection.cshtml"; // Replace with your new page URL
+            }
+        }
+    </script>
 </head>
 <body>
 
     <div class="login-container">
         <h2>Login</h2>
-        <form method="POST" action="/your-login-endpoint">
+        <form onsubmit="event.preventDefault(); validateAndRedirect();">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" placeholder="Enter your username" required>
 
@@ -71,4 +82,3 @@
 
 </body>
 </html>
-
